@@ -5,6 +5,7 @@ import Universities from "@/components/Universities";
 import Quiz from "@/components/Quiz";
 import Communities from "@/components/Communities";
 import Footer from "@/components/Footer";
+import Chatbot from "@/components/Chatbot";
 
 const Index = () => {
   return (
@@ -16,6 +17,7 @@ const Index = () => {
       <Quiz />
       <Communities />
       <Footer />
+      <Chatbot />
     </div>
   );
 };
