@@ -4,6 +4,7 @@ import CareerPaths from "@/components/CareerPaths";
 import Universities from "@/components/Universities";
 import Quiz from "@/components/Quiz";
 import Communities from "@/components/Communities";
+import { ContactForm } from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 import Chatbot from "@/components/Chatbot";
 
@@ -16,6 +17,7 @@ const Index = () => {
       <Universities />
       <Quiz />
       <Communities />
+      <ContactForm />
       <Footer />
       <Chatbot />
     </div>
