@@ -20,9 +20,8 @@ const Hero = () => {
             transition={{ duration: 0.5 }}
             className="inline-flex items-center gap-2 bg-secondary px-4 py-2 rounded-full mb-6"
           >
-            <span className="text-xl">🇿🇼</span>
             <span className="text-sm font-medium text-secondary-foreground">
-              For A-Level Graduates in Zimbabwe
+              For A-Level Graduates
             </span>
           </motion.div>
 

@@ -75,7 +75,8 @@ export const careerPaths: CareerPath[] = [
       "Data Science",
       "Computer Science",
       "Applied Mathematics + Programming",
-      "Statistics + Tech certifications"
+      "Statistics + Tech certifications",
+      "Informatics"
     ],
     universities: [
       "University of Zimbabwe",
@@ -217,25 +218,27 @@ export const universities = [
   {
     name: "University of Zimbabwe (UZ)",
     location: "Harare",
-    programs: ["Computer Science", "Information Systems", "Data Science"],
+    programs: ["Computer Science", "Software Engineering", "Computer Engineering", "Cyber Security and Forensic Auditing", "Data Science and Informatics",
+      "Hardware  Engineering", "Telecommunications Engineering",
+       "Network Engineering", "Artifical Intelligence and Machine Learning", "Cloud Computing and Internet of Things"],
     website: "https://www.uz.ac.zw"
   },
   {
     name: "National University of Science & Technology (NUST)",
     location: "Bulawayo",
-    programs: ["Computer Science", "Software Engineering", "Information Security"],
+    programs: ["Computer Science",  "Informatics"],
     website: "https://www.nust.ac.zw"
   },
   {
     name: "Harare Institute of Technology (HIT)",
     location: "Harare",
-    programs: ["Software Engineering", "Information Security", "Multimedia"],
+    programs: ["Software Engineering", "Information Technology", "Multimedia"],
     website: "https://www.hit.ac.zw"
   },
   {
     name: "Midlands State University (MSU)",
     location: "Gweru",
-    programs: ["Computer Science", "Information Technology", "Business IT"],
+    programs: ["Computer Science", "Computer Systems Engineering", "Cybersecurity", "Software Engineering"],
     website: "https://www.msu.ac.zw"
   },
   {

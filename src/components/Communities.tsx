@@ -8,6 +8,8 @@ const communities = [
     icon: <Code className="w-5 h-5" />,
     color: "bg-software/10 text-software",
     category: "Development",
+    link: "https://gdg.community.dev/gdg-harare/",
+    linkLabel: "Visit website",
   },
   {
     name: "Zim Developers",
@@ -15,6 +17,8 @@ const communities = [
     icon: <MessageCircle className="w-5 h-5" />,
     color: "bg-primary/10 text-primary",
     category: "General Tech",
+    link: "https://www.facebook.com/groups/zimdevs", // Replace with official website/LinkedIn/WhatsApp link if available
+    linkLabel: "Join community",
   },
   {
     name: "Data Science Zimbabwe",
@@ -22,6 +26,17 @@ const communities = [
     icon: <BarChart className="w-5 h-5" />,
     color: "bg-data/10 text-data",
     category: "Data & AI",
+    link: "https://www.linkedin.com/company/data-science-zimbabwe/", // Replace if you prefer a WhatsApp/website link
+    linkLabel: "Connect on LinkedIn",
+  },
+  {
+    name: "Data Wired",
+    description: "Empowering individuals and organizations to thrive in the rapidly evolving data landscape",
+    icon: <BarChart className="w-5 h-5" />,
+    color: "bg-data/10 text-data",
+    category: "Community",
+    link: "https://www.linkedin.com/company/data-wired-zimbabwe/", // Replace with your preferred community link
+    linkLabel: "Visit LinkedIn page",
   },
   {
     name: "UX Harare",
@@ -29,6 +44,8 @@ const communities = [
     icon: <Palette className="w-5 h-5" />,
     color: "bg-design/10 text-design",
     category: "Design",
+    link: "https://www.meetup.com/ux-harare/", // Or WhatsApp/LinkedIn link
+    linkLabel: "View community",
   },
   {
     name: "Cybersecurity Zimbabwe",
@@ -36,6 +53,8 @@ const communities = [
     icon: <Shield className="w-5 h-5" />,
     color: "bg-security/10 text-security",
     category: "Security",
+    link: "https://www.linkedin.com/company/cybersecurity-zimbabwe/", // Update with official group/WhatsApp link if needed
+    linkLabel: "Connect on LinkedIn",
   },
   {
     name: "Tech Women Zimbabwe",
@@ -43,6 +62,8 @@ const communities = [
     icon: <Users className="w-5 h-5" />,
     color: "bg-business/10 text-business",
     category: "Community",
+    link: "https://www.techwomen.org/participants/countries/zimbabwe", // Replace with official Tech Women Zim link/WhatsApp group
+    linkLabel: "Learn more",
   },
 ];
 
@@ -97,6 +118,17 @@ const Communities = () => {
                     {community.name}
                   </h3>
                   <p className="text-sm text-muted-foreground">{community.description}</p>
+                  {community.link && (
+                    <a
+                      href={community.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-3 inline-flex items-center text-sm font-medium text-primary hover:underline"
+                    >
+                      {community.linkLabel ?? "Visit community"}
+                      <ExternalLink className="w-3 h-3 ml-1" />
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.div>

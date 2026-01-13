@@ -18,9 +18,8 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2">
-            <span className="text-2xl">🇿🇼</span>
             <span className="font-display font-bold text-xl text-foreground">
-              ZimTech<span className="text-primary">Paths</span>
+              Tech<span className="text-primary">Path</span>
             </span>
           </a>
 
