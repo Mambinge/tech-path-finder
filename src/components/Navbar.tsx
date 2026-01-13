@@ -1,31 +1,41 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Users } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
   const navItems = [
-    { label: "Career Paths", href: "#careers" },
-    { label: "Universities", href: "#universities" },
-    { label: "Communities", href: "#communities" },
-    { label: "Take Quiz", href: "#quiz" },
+    { label: "Career Paths", href: "#careers", homeOnly: true },
+    { label: "Universities", href: "#universities", homeOnly: true },
+    { label: "Communities", href: "#communities", homeOnly: true },
+    { label: "Take Quiz", href: "#quiz", homeOnly: true },
+    { label: "Contact", href: "#contact", homeOnly: true },
   ];
+
+  const handleNavClick = (href: string) => {
+    if (href.startsWith("#") && !isHomePage) {
+      window.location.href = "/" + href;
+    }
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2">
             <span className="font-display font-bold text-xl text-foreground">
               Tech<span className="text-primary">Path</span>
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
+          <div className="hidden md:flex items-center gap-6">
+            {isHomePage && navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
@@ -34,12 +44,21 @@ const Navbar = () => {
                 {item.label}
               </a>
             ))}
-            <a
-              href="#quiz"
-              className="bg-primary text-primary-foreground px-4 py-2 rounded-lg font-semibold hover:opacity-90 transition-opacity"
+            <Link
+              to="/mentorship"
+              className="flex items-center gap-2 text-primary font-semibold hover:text-primary/80 transition-colors"
             >
-              Find My Path
-            </a>
+              <Users className="w-4 h-4" />
+              Ask a Senior
+            </Link>
+            {isHomePage && (
+              <a
+                href="#quiz"
+                className="bg-primary text-primary-foreground px-4 py-2 rounded-lg font-semibold hover:opacity-90 transition-opacity"
+              >
+                Find My Path
+              </a>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -62,7 +81,7 @@ const Navbar = () => {
             className="md:hidden bg-background border-b border-border"
           >
             <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
-              {navItems.map((item) => (
+              {isHomePage && navItems.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
@@ -72,13 +91,23 @@ const Navbar = () => {
                   {item.label}
                 </a>
               ))}
-              <a
-                href="#quiz"
+              <Link
+                to="/mentorship"
                 onClick={() => setIsOpen(false)}
-                className="bg-primary text-primary-foreground px-4 py-3 rounded-lg font-semibold text-center"
+                className="flex items-center gap-2 text-primary py-2 font-semibold"
               >
-                Find My Path
-              </a>
+                <Users className="w-4 h-4" />
+                Ask a Tech Senior
+              </Link>
+              {isHomePage && (
+                <a
+                  href="#quiz"
+                  onClick={() => setIsOpen(false)}
+                  className="bg-primary text-primary-foreground px-4 py-3 rounded-lg font-semibold text-center"
+                >
+                  Find My Path
+                </a>
+              )}
             </div>
           </motion.div>
         )}
