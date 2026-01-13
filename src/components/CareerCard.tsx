@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { ChevronRight, Users, GraduationCap, Briefcase, Building } from "lucide-react";
+import { ChevronRight, Users, GraduationCap, Briefcase, Building, MessageCircle } from "lucide-react";
+import { Link } from "react-router-dom";
 import { CareerPath } from "@/data/careerPaths";
 import { useState } from "react";
 
@@ -153,6 +154,15 @@ const CareerCard = ({ career, index }: CareerCardProps) => {
               ))}
             </div>
           </div>
+
+          {/* Ask a Senior CTA */}
+          <Link
+            to="/mentorship"
+            className={`flex items-center justify-center gap-2 w-full py-3 rounded-xl ${colors.bg} ${colors.text} font-semibold hover:opacity-80 transition-opacity`}
+          >
+            <MessageCircle className="w-4 h-4" />
+            Still unsure? Talk to someone in this field
+          </Link>
         </div>
       </motion.div>
     </motion.div>

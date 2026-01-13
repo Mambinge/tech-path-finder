@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ArrowRight, RotateCcw, Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowRight, RotateCcw, Sparkles, Users } from "lucide-react";
+import { Link } from "react-router-dom";
 import { careerPaths } from "@/data/careerPaths";
 
 interface QuizQuestion {
@@ -247,21 +248,32 @@ const Quiz = () => {
                   ))}
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <a
-                    href="#careers"
-                    className="flex-1 inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity"
+                <div className="flex flex-col gap-3">
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <a
+                      href="#careers"
+                      className="flex-1 inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity"
+                    >
+                      Explore All Careers
+                      <ArrowRight className="w-4 h-4" />
+                    </a>
+                    <button
+                      onClick={resetQuiz}
+                      className="flex-1 inline-flex items-center justify-center gap-2 bg-secondary text-secondary-foreground px-6 py-3 rounded-xl font-semibold hover:bg-secondary/80 transition-colors"
+                    >
+                      <RotateCcw className="w-4 h-4" />
+                      Retake Quiz
+                    </button>
+                  </div>
+                  
+                  {/* Confirm your choice CTA */}
+                  <Link
+                    to="/mentorship"
+                    className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-primary/10 to-accent/10 text-primary px-6 py-3 rounded-xl font-semibold hover:from-primary/20 hover:to-accent/20 transition-all border border-primary/20"
                   >
-                    Explore All Careers
-                    <ArrowRight className="w-4 h-4" />
-                  </a>
-                  <button
-                    onClick={resetQuiz}
-                    className="flex-1 inline-flex items-center justify-center gap-2 bg-secondary text-secondary-foreground px-6 py-3 rounded-xl font-semibold hover:bg-secondary/80 transition-colors"
-                  >
-                    <RotateCcw className="w-4 h-4" />
-                    Retake Quiz
-                  </button>
+                    <Users className="w-4 h-4" />
+                    Want to confirm your choice? Talk to a mentor
+                  </Link>
                 </div>
               </motion.div>
             )}
