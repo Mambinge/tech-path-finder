@@ -53,23 +53,23 @@ serve(async (req) => {
 
   try {
     const { messages } = await req.json();
-    const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    
-    if (!LOVABLE_API_KEY) {
-      console.error("LOVABLE_API_KEY is not configured");
+    const OPENAI_API_KEY = Deno.env.get("OPENAI_API_KEY");
+
+    if (!OPENAI_API_KEY) {
+      console.error("OPENAI_API_KEY is not configured");
       throw new Error("AI service is not configured");
     }
 
     console.log("Processing chat request with", messages.length, "messages");
 
-    const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${LOVABLE_API_KEY}`,
+        Authorization: `Bearer ${OPENAI_API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "google/gemini-3-flash-preview",
+        model: "gpt-4o-mini",
         messages: [
           { role: "system", content: CAREER_CONTEXT },
           ...messages,
@@ -79,21 +79,15 @@ serve(async (req) => {
     });
 
     if (!response.ok) {
-      console.error("AI gateway error:", response.status);
-      
+      console.error("AI provider error:", response.status);
+
       if (response.status === 429) {
         return new Response(
           JSON.stringify({ error: "I'm getting too many questions right now! Please try again in a moment. 😅" }),
           { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }
-      if (response.status === 402) {
-        return new Response(
-          JSON.stringify({ error: "The AI service needs attention. Please try again later." }),
-          { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-        );
-      }
-      
+
       const errorText = await response.text();
       console.error("Error response:", errorText);
       return new Response(
