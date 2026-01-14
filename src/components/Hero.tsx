@@ -47,7 +47,7 @@ const Hero = () => {
             Finished A-Levels? Not sure which tech degree to take?
             <br />
             <span className="text-foreground font-medium">
-              Let's help you discover your perfect tech career 🚀
+              Let's help you discover your perfect tech career
             </span>
           </motion.p>
 
@@ -70,7 +70,7 @@ const Hero = () => {
               href="#quiz"
               className="inline-flex items-center justify-center gap-2 bg-secondary text-secondary-foreground px-8 py-4 rounded-xl font-semibold text-lg hover:bg-secondary/80 transition-all border border-border"
             >
-              🎯 Help Me Choose
+              Help Me Choose
             </a>
             <a
               href="#universities"

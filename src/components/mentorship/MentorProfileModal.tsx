@@ -137,13 +137,7 @@ export const MentorProfileModal = ({
                 <p className="text-muted-foreground">{mentor.bio}</p>
               </div>
 
-              {/* My Journey */}
-              <div>
-                <h3 className="font-semibold text-lg mb-2 flex items-center gap-2">
-                  <span className="text-xl">🚀</span> My Journey
-                </h3>
-                <p className="text-muted-foreground">{mentor.journey}</p>
-              </div>
+
 
               {/* Biggest Mistake */}
               {mentor.biggestMistake && (
@@ -196,7 +190,7 @@ export const MentorProfileModal = ({
                   </Button>
                 )}
                 <Button onClick={handleRequestMentorship} className="w-full bg-gradient-hero text-white">
-                  📝 Request Formal Mentorship
+                  Request Formal Mentorship
                 </Button>
               </div>
               <p className="text-xs text-center text-muted-foreground mt-3">
