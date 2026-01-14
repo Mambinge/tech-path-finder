@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { MentorCard } from "@/components/mentorship/MentorCard";
 import { MentorProfileModal } from "@/components/mentorship/MentorProfileModal";
 import { SafetySection } from "@/components/mentorship/SafetySection";
-import { mentors, Mentor, mentorshipFormUrl, generalWhatsappNumber, generalWhatsappMessage } from "@/data/mentors";
+import { mentors, Mentor, mentorshipFormUrl, mentorFormUrl, generalWhatsappNumber, generalWhatsappMessage } from "@/data/mentors";
 import Chatbot from "@/components/Chatbot";
 import Footer from "@/components/Footer";
 
@@ -41,7 +41,7 @@ const Mentorship = () => {
   };
 
   const handleRequestMentorship = () => {
-    window.open(mentorshipFormUrl, "_blank");
+    window.open(mentorFormUrl, "_blank");
   };
 
   const handleGeneralWhatsApp = () => {
