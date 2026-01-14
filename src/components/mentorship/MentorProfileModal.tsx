@@ -1,5 +1,15 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Linkedin, MessageCircle, GraduationCap, Briefcase, Clock, AlertTriangle, CheckCircle } from "lucide-react";
+import {
+  X,
+  Linkedin,
+  MessageCircle,
+  GraduationCap,
+  Briefcase,
+  Clock,
+  AlertTriangle,
+  CheckCircle,
+} from "lucide-react";
+import { createPortal } from "react-dom";
 import { Button } from "@/components/ui/button";
 import { Mentor, mentorshipFormUrl } from "@/data/mentors";
 
@@ -9,12 +19,19 @@ interface MentorProfileModalProps {
   onClose: () => void;
 }
 
-export const MentorProfileModal = ({ mentor, isOpen, onClose }: MentorProfileModalProps) => {
+export const MentorProfileModal = ({
+  mentor,
+  isOpen,
+  onClose,
+}: MentorProfileModalProps) => {
   if (!mentor) return null;
+  if (typeof document === "undefined") return null;
 
   const handleWhatsApp = () => {
     if (mentor.whatsapp) {
-      const message = encodeURIComponent(`Hi ${mentor.name.split(" ")[0]}, I found you on TechPath Zimbabwe. I'm an A-Level graduate interested in ${mentor.role}. Could I ask you a few questions?`);
+      const message = encodeURIComponent(
+        `Hi ${mentor.name.split(" ")[0]}, I found you on TechPath Zimbabwe. I'm an A-Level graduate interested in ${mentor.role}. Could I ask you a few questions?`
+      );
       window.open(`https://wa.me/${mentor.whatsapp}?text=${message}`, "_blank");
     }
   };
@@ -29,25 +46,37 @@ export const MentorProfileModal = ({ mentor, isOpen, onClose }: MentorProfileMod
     window.open(mentorshipFormUrl, "_blank");
   };
 
-  return (
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
-        <>
+        <motion.div
+          key="mentor-profile-modal"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+        >
           {/* Backdrop */}
-          <motion.div
+          <motion.button
+            type="button"
+            aria-label="Close mentor profile"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
           />
 
           {/* Modal */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            role="dialog"
+            aria-modal="true"
+            aria-label={`Mentor profile: ${mentor.name}`}
+            initial={{ opacity: 0, scale: 0.96, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100%-2rem)] max-w-2xl max-h-[85vh] bg-card rounded-2xl shadow-elegant z-50 overflow-hidden flex flex-col"
+            exit={{ opacity: 0, scale: 0.96, y: 16 }}
+            transition={{ duration: 0.18 }}
+            className="relative w-full max-w-2xl max-h-[85vh] bg-card rounded-2xl shadow-elegant overflow-hidden flex flex-col"
           >
             {/* Header */}
             <div className="bg-gradient-hero p-6 text-white relative">
@@ -59,9 +88,14 @@ export const MentorProfileModal = ({ mentor, isOpen, onClose }: MentorProfileMod
               </button>
 
               <div className="flex items-center gap-4">
-                <div className="w-20 h-20 rounded-full bg-white/20 flex items-center justify-center text-3xl font-bold border-4 border-white/30">
+                <div className="w-20 h-20 rounded-full bg-white/20 flex items-center justify-center text-3xl font-bold border-4 border-white/30 overflow-hidden">
                   {mentor.photo ? (
-                    <img src={mentor.photo} alt={mentor.name} className="w-full h-full rounded-full object-cover" />
+                    <img
+                      src={mentor.photo}
+                      alt={mentor.name}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
                   ) : (
                     mentor.name.charAt(0)
                   )}
@@ -146,11 +180,7 @@ export const MentorProfileModal = ({ mentor, isOpen, onClose }: MentorProfileMod
             <div className="border-t border-border p-4 bg-muted/30">
               <div className="flex flex-wrap gap-3">
                 {mentor.linkedin && (
-                  <Button
-                    variant="outline"
-                    onClick={handleLinkedIn}
-                    className="flex-1"
-                  >
+                  <Button variant="outline" onClick={handleLinkedIn} className="flex-1">
                     <Linkedin className="w-4 h-4" />
                     View LinkedIn
                   </Button>
@@ -165,10 +195,7 @@ export const MentorProfileModal = ({ mentor, isOpen, onClose }: MentorProfileMod
                     Chat on WhatsApp
                   </Button>
                 )}
-                <Button
-                  onClick={handleRequestMentorship}
-                  className="w-full bg-gradient-hero text-white"
-                >
+                <Button onClick={handleRequestMentorship} className="w-full bg-gradient-hero text-white">
                   📝 Request Formal Mentorship
                 </Button>
               </div>
@@ -177,8 +204,10 @@ export const MentorProfileModal = ({ mentor, isOpen, onClose }: MentorProfileMod
               </p>
             </div>
           </motion.div>
-        </>
+        </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 };
+
