@@ -5,6 +5,26 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 
+// Simple markdown parser for chat messages
+const parseMarkdown = (text: string): string => {
+  return text
+    // Headers - convert to bold text
+    .replace(/^### (.+)$/gm, '<strong class="text-base">$1</strong>')
+    .replace(/^## (.+)$/gm, '<strong class="text-lg">$1</strong>')
+    .replace(/^# (.+)$/gm, '<strong class="text-xl">$1</strong>')
+    // Bold
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    // Italic
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    // Bullet points
+    .replace(/^- (.+)$/gm, '• $1')
+    .replace(/^\* (.+)$/gm, '• $1')
+    // Numbered lists (keep as is but clean up)
+    .replace(/^(\d+)\. /gm, '$1. ')
+    // Line breaks
+    .replace(/\n/g, '<br />');
+};
+
 type Message = {
   role: "user" | "assistant";
   content: string;
@@ -236,7 +256,14 @@ const Chatbot = () => {
                           : "bg-muted text-foreground"
                       }`}
                     >
-                      <p className="whitespace-pre-wrap">{msg.content || "..."}</p>
+                      {msg.role === "assistant" ? (
+                        <div 
+                          className="prose prose-sm prose-neutral dark:prose-invert max-w-none [&>br]:my-1"
+                          dangerouslySetInnerHTML={{ __html: parseMarkdown(msg.content) || "..." }}
+                        />
+                      ) : (
+                        <p className="whitespace-pre-wrap">{msg.content || "..."}</p>
+                      )}
                     </div>
                     {msg.role === "user" && (
                       <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-secondary">
