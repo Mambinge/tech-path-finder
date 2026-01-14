@@ -19,18 +19,16 @@ export interface Mentor {
 export const mentors: Mentor[] = [
   {
     id: "1",
-    name: "Tawanda M.",
+    name: "Tanaka Mambinge",
     role: "Software Developer",
-    company: "Remote (International)",
-    degree: "BSc Computer Science",
-    university: "Midlands State University",
-    yearsExperience: 4,
-    bio: "Started coding in my first year at MSU with zero experience. Now working remotely for a US-based startup. I want to help students avoid the mistakes I made early on.",
+    company: "Remote",
+    degree: "BSc Data Science and Informatics",
+    university: "University of Zimbabwe",
+    yearsExperience: 2,
+    bio: "Started coding in my first year at UZ with zero experience. I want to help students avoid the mistakes I made early on.",
     journey: "I chose Computer Science because I loved video games and wanted to make my own. The first year was HARD - I almost switched to something 'easier'. But I stuck with it, joined coding clubs, and started freelancing in 3rd year. That freelancing experience got me my first remote job.",
-    biggestMistake: "Not building a portfolio early. I spent too much time on theory and not enough on practical projects that I could show employers.",
     helpsWith: ["Choosing between CS and IT", "Remote work opportunities", "Building a portfolio", "Freelancing while studying"],
     linkedin: "https://linkedin.com/in/example",
-    whatsapp: "263771234567",
     available: true,
   },
   {
@@ -60,7 +58,6 @@ export const mentors: Mentor[] = [
     journey: "I was always curious about how hackers work (ethically, of course!). HIT's Information Security program was perfect. I got certified in CompTIA Security+ while studying, which helped me stand out when job hunting.",
     helpsWith: ["Cybersecurity career path", "Security certifications", "What the job is really like", "HIT experience"],
     linkedin: "https://linkedin.com/in/example",
-    whatsapp: "263772345678",
     available: true,
   },
   {
@@ -105,7 +102,6 @@ export const mentors: Mentor[] = [
     biggestMistake: "Not networking enough. I was shy. But connections open doors that skills alone can't.",
     helpsWith: ["Mobile app development", "CUT experience", "Coming from a small town", "FinTech opportunities"],
     linkedin: "https://linkedin.com/in/example",
-    whatsapp: "263773456789",
     available: true,
   },
 ];

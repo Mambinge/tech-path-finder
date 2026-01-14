@@ -1,11 +1,19 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, Mail, User, MessageSquare, FileText, CheckCircle, Loader2 } from "lucide-react";
+import emailjs from "@emailjs/browser";
+import {
+  Send,
+  Mail,
+  User,
+  MessageSquare,
+  FileText,
+  CheckCircle,
+  Loader2,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
 
 export const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +22,7 @@ export const ContactForm = () => {
     subject: "",
     message: "",
   });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const { toast } = useToast();
@@ -32,26 +41,37 @@ export const ContactForm = () => {
     setIsSubmitting(true);
 
     try {
-      const { data, error } = await supabase.functions.invoke("send-contact", {
-        body: formData,
-      });
-
-      if (error) throw error;
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
 
       setIsSuccess(true);
-      setFormData({ name: "", email: "", subject: "", message: "" });
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+
       toast({
         title: "Message sent! 🎉",
         description: "We'll get back to you as soon as possible.",
       });
 
-      // Reset success state after 5 seconds
       setTimeout(() => setIsSuccess(false), 5000);
-    } catch (error: any) {
-      console.error("Error sending message:", error);
+    } catch (error) {
+      console.error("EmailJS error:", error);
       toast({
         title: "Failed to send message",
-        description: error.message || "Please try again later.",
+        description: "Please try again later.",
         variant: "destructive",
       });
     } finally {
@@ -60,7 +80,10 @@ export const ContactForm = () => {
   };
 
   return (
-    <section id="contact" className="py-20 px-4 bg-gradient-to-b from-muted/30 to-background">
+    <section
+      id="contact"
+      className="py-20 px-4 bg-gradient-to-b from-muted/30 to-background"
+    >
       <div className="container max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -69,13 +92,15 @@ export const ContactForm = () => {
           className="text-center mb-12"
         >
           <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            📬 Get In Touch
+             Get In Touch
           </span>
           <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
-            Have Questions? <span className="text-gradient">Reach Out!</span>
+            Have Questions?{" "}
+            <span className="text-gradient">Reach Out!</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Can't find what you're looking for? Send us a message and we'll help guide you on your tech journey.
+            Can't find what you're looking for? Send us a message and we'll help
+            guide you on your tech journey.
           </p>
         </motion.div>
 
@@ -117,10 +142,14 @@ export const ContactForm = () => {
             </div>
 
             <div className="bg-gradient-card rounded-2xl p-6 border border-primary/20">
-              <p className="text-sm text-muted-foreground mb-2">Response time</p>
-              <p className="text-2xl font-bold text-foreground">Within 24-48 hours</p>
+              <p className="text-sm text-muted-foreground mb-2">
+                Response time
+              </p>
+              <p className="text-2xl font-bold text-foreground">
+                Within 24–48 hours
+              </p>
               <p className="text-sm text-muted-foreground mt-2">
-                We read every message and try our best to help! 💪
+                We read every message and try our best to help!
               </p>
             </div>
           </motion.div>
@@ -138,7 +167,9 @@ export const ContactForm = () => {
                 className="bg-card rounded-2xl p-8 shadow-elegant border border-primary/20 text-center"
               >
                 <CheckCircle className="w-16 h-16 text-primary mx-auto mb-4" />
-                <h3 className="text-2xl font-bold mb-2">Message Sent!</h3>
+                <h3 className="text-2xl font-bold mb-2">
+                  Message Sent!
+                </h3>
                 <p className="text-muted-foreground mb-4">
                   Thank you for reaching out. We'll get back to you soon!
                 </p>
@@ -154,6 +185,13 @@ export const ContactForm = () => {
                 onSubmit={handleSubmit}
                 className="bg-card rounded-2xl p-6 md:p-8 shadow-elegant border border-border/50 space-y-5"
               >
+                {/* Honeypot (anti-spam) */}
+                <input
+                  type="text"
+                  name="company"
+                  style={{ display: "none" }}
+                />
+
                 <div className="space-y-2">
                   <label className="text-sm font-medium flex items-center gap-2">
                     <User className="w-4 h-4 text-primary" />

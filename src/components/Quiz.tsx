@@ -125,7 +125,7 @@ const Quiz = () => {
           className="text-center max-w-2xl mx-auto mb-12"
         >
           <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
-            🎯 Career Quiz
+            Career Quiz
           </span>
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
             Help Me Choose

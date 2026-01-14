@@ -15,7 +15,7 @@ const Universities = () => {
           className="text-center max-w-2xl mx-auto mb-16"
         >
           <span className="inline-block px-4 py-1.5 bg-accent/10 text-accent rounded-full text-sm font-medium mb-4">
-            🎓 Study in Zimbabwe
+             Study in Zimbabwe
           </span>
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
             Top Tech Universities
@@ -89,7 +89,7 @@ const Universities = () => {
             href="#quiz"
             className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity"
           >
-            🎯 Take the Career Quiz
+            Take the Career Quiz
           </a>
         </motion.div>
       </div>

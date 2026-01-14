@@ -39,7 +39,7 @@ const CareerPaths = () => {
           className="bg-gradient-hero text-primary-foreground rounded-2xl p-6 md:p-8 mb-12 text-center max-w-3xl mx-auto"
         >
           <p className="text-lg md:text-xl font-medium">
-            "You don't need to know everything now. You just need to start somewhere." 🌟
+            "You don't need to know everything now. You just need to start somewhere."
           </p>
         </motion.div>
 

@@ -9,6 +9,7 @@ import { MentorProfileModal } from "@/components/mentorship/MentorProfileModal";
 import { SafetySection } from "@/components/mentorship/SafetySection";
 import { mentors, Mentor, mentorshipFormUrl, generalWhatsappNumber, generalWhatsappMessage } from "@/data/mentors";
 import Chatbot from "@/components/Chatbot";
+import Footer from "@/components/Footer";
 
 const Mentorship = () => {
   const [selectedMentor, setSelectedMentor] = useState<Mentor | null>(null);
@@ -55,9 +56,8 @@ const Mentorship = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <Link to="/" className="flex items-center gap-2">
-              <span className="text-2xl">🇿🇼</span>
               <span className="font-display font-bold text-xl text-foreground">
-                ZimTech<span className="text-primary">Paths</span>
+                Tech<span className="text-primary">Path</span>
               </span>
             </Link>
             <Link to="/">
@@ -78,7 +78,7 @@ const Mentorship = () => {
             animate={{ opacity: 1, y: 0 }}
           >
             <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-              👩‍💻👨‍💻 Real People, Real Advice
+              Real People, Real Advice
             </span>
             <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">
               Ask a <span className="text-gradient">Tech Senior</span>
@@ -90,14 +90,14 @@ const Mentorship = () => {
 
             {/* Quick Action Buttons */}
             <div className="flex flex-wrap justify-center gap-4">
-              <Button
+              {/* <Button
                 onClick={handleGeneralWhatsApp}
                 size="lg"
                 className="bg-green-600 hover:bg-green-700 text-white"
               >
                 <MessageCircle className="w-5 h-5" />
                 Chat on WhatsApp
-              </Button>
+              </Button> */}
               <Button
                 onClick={handleRequestMentorship}
                 size="lg"
@@ -106,14 +106,14 @@ const Mentorship = () => {
                 <FileText className="w-5 h-5" />
                 Request a Mentor
               </Button>
-              <Button
+              {/* <Button
                 variant="ghost"
                 size="lg"
                 onClick={() => document.getElementById("mentors")?.scrollIntoView({ behavior: "smooth" })}
               >
                 <Linkedin className="w-5 h-5" />
                 View LinkedIn Profiles
-              </Button>
+              </Button> */}
             </div>
           </motion.div>
         </div>
@@ -216,7 +216,7 @@ const Mentorship = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-bold mb-4">Are You a Tech Professional? 🌟</h3>
+            <h3 className="text-2xl font-bold mb-4">Are You a Tech Professional? </h3>
             <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
               Share your journey with the next generation. Join our mentor community and help
               A-Level graduates find their path in tech.
@@ -240,19 +240,7 @@ const Mentorship = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-4 border-t border-border">
-        <div className="container max-w-6xl mx-auto text-center">
-          <Link to="/" className="inline-flex items-center gap-2 mb-4">
-            <span className="text-2xl">🇿🇼</span>
-            <span className="font-display font-bold text-xl text-foreground">
-              ZimTech<span className="text-primary">Paths</span>
-            </span>
-          </Link>
-          <p className="text-sm text-muted-foreground">
-            Made with ❤️ for A-Level graduates in Zimbabwe
-          </p>
-        </div>
-      </footer>
+<Footer />
 
       {/* Mentor Profile Modal */}
       <MentorProfileModal

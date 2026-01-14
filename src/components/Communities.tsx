@@ -68,11 +68,28 @@ const communities = [
 ];
 
 const resources = [
-  { name: "GitHub Student Pack", description: "Free dev tools for students", url: "#" },
-  { name: "Kaggle", description: "Learn data science with competitions", url: "#" },
-  { name: "TryHackMe", description: "Learn cybersecurity hands-on", url: "#" },
-  { name: "Figma Community", description: "Free design resources", url: "#" },
+  {
+    name: "GitHub Student Developer Pack",
+    description: "Free premium developer tools for students",
+    url: "https://education.github.com/pack",
+  },
+  {
+    name: "Kaggle",
+    description: "Learn data science with courses, datasets, and competitions",
+    url: "https://www.kaggle.com/",
+  },
+  {
+    name: "TryHackMe",
+    description: "Hands-on cybersecurity learning platform",
+    url: "https://tryhackme.com/",
+  },
+  {
+    name: "Figma Community",
+    description: "Free UI kits, design systems, and templates",
+    url: "https://www.figma.com/community",
+  },
 ];
+
 
 const Communities = () => {
   return (
@@ -87,7 +104,7 @@ const Communities = () => {
           className="text-center max-w-2xl mx-auto mb-16"
         >
           <span className="inline-block px-4 py-1.5 bg-data/10 text-data rounded-full text-sm font-medium mb-4">
-            🌐 Join the Community
+            Join the Community
           </span>
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
             Connect & Grow
@@ -145,7 +162,7 @@ const Communities = () => {
         >
           <div className="text-center mb-8">
             <h3 className="font-display text-2xl md:text-3xl font-bold text-primary-foreground mb-2">
-              🧰 Free Resources to Get Started
+               Free Resources to Get Started
             </h3>
             <p className="text-primary-foreground/80">
               No excuses! Start learning with these free platforms
