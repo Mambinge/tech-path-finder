@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, GraduationCap, MapPin } from "lucide-react";
+import { ArrowRight, Sparkles, GraduationCap } from "lucide-react";
+import heroImage from "@/assets/hero-students.jpg";
 
 const Hero = () => {
   return (
@@ -11,8 +12,10 @@ const Hero = () => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-data/5 rounded-full blur-3xl" />
       </div>
 
-      <div className="container mx-auto px-4 py-20">
-        <div className="max-w-4xl mx-auto text-center">
+      <div className="container mx-auto px-4 py-12 lg:py-20">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Text Content */}
+          <div className="text-center lg:text-left order-2 lg:order-1">
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -86,19 +89,37 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="grid grid-cols-3 gap-8 max-w-xl mx-auto"
+            className="grid grid-cols-3 gap-8 max-w-xl mx-auto lg:mx-0"
           >
-            <div className="text-center">
+            <div className="text-center lg:text-left">
               <div className="font-display text-3xl md:text-4xl font-bold text-primary">5+</div>
               <div className="text-sm text-muted-foreground">Career Paths</div>
             </div>
-            <div className="text-center">
+            <div className="text-center lg:text-left">
               <div className="font-display text-3xl md:text-4xl font-bold text-accent">10+</div>
               <div className="text-sm text-muted-foreground">Universities</div>
             </div>
-            <div className="text-center">
+            <div className="text-center lg:text-left">
               <div className="font-display text-3xl md:text-4xl font-bold text-data">20+</div>
               <div className="text-sm text-muted-foreground">Tech Roles</div>
+            </div>
+          </motion.div>
+          </div>
+
+          {/* Hero Image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="order-1 lg:order-2"
+          >
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl blur-2xl" />
+              <img
+                src={heroImage}
+                alt="Diverse group of young tech students collaborating in a modern workspace"
+                className="relative rounded-3xl shadow-2xl w-full object-cover aspect-[4/3]"
+              />
             </div>
           </motion.div>
         </div>
